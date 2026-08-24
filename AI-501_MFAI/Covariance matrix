@@ -1,0 +1,52 @@
+H = [1.70, 1.62, 1.52, 1.85, 1.91, 1.42]
+W = [72, 64, 84, 80, 72, 70]
+
+n = 6
+
+total_H = 0
+total_W = 0
+
+for i in range(n):
+    total_H = total_H + H[i]
+    total_W = total_W + W[i]
+
+mu_H = total_H / n
+mu_W = total_W / n
+
+X = []
+Y = []
+
+for i in range(n):
+    X.append(H[i] - mu_H)
+    Y.append(W[i] - mu_W)
+
+print("Mean of H =", mu_H)
+print("Mean of W =", mu_W)
+
+print("\nH\tW\tX\tY\tX²\tY²\tXY")
+
+X2 = 0
+Y2 = 0
+XY = 0
+
+for i in range(n):
+    x2 = X[i] * X[i]
+    y2 = Y[i] * Y[i]
+    xy = X[i] * Y[i]
+
+    X2 = X2 + x2
+    Y2 = Y2 + y2
+    XY = XY + xy
+
+    print(H[i], "\t", W[i], "\t", X[i], "\t", Y[i],
+          "\t", x2, "\t", y2, "\t", xy)
+
+print("\nn - 1 =", n - 1)
+
+cov_HH = X2 / (n - 1)
+cov_HW = XY / (n - 1)
+cov_WW = Y2 / (n - 1)
+
+print("\nCovariance Matrix:")
+print("[", cov_HH, cov_HW, "]")
+print("[", cov_HW, cov_WW, "]")
